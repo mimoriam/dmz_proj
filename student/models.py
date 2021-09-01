@@ -57,7 +57,7 @@ class Semester(models.Model):
         return f'{self.subject_semester} Semester - {self.student} - {self.subject_name}'
 
 
-class Semester_Conclusion(models.Model):
+class SemesterConclusion(models.Model):
     semester_CH = models.FloatField()
     semester_cumulative = models.FloatField()
     total_gpa = models.FloatField()
