@@ -1,6 +1,11 @@
 from django.db import models
 
 
+class StudentTestModel(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    student_name = models.CharField(max_length=100)
+
+
 class Student(models.Model):
     session_choices = [
         ('2016', '2016'),
