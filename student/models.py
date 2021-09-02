@@ -35,7 +35,14 @@ class Student(models.Model):
         return self.student_name
 
 
-class Semester(models.Model):
+class SemesterOrYear(models.Model):
+    semester_year = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.semester_year}'
+
+
+class Subject(models.Model):
     subject_grade_choices = [
         ('A+', 'A+'),
         ('A-', 'A-'),
@@ -50,11 +57,12 @@ class Semester(models.Model):
     subject_sgpa = models.FloatField()
     subject_grade = models.CharField(max_length=50, choices=subject_grade_choices)
     subject_GPA = models.FloatField()
-    subject_semester = models.CharField(max_length=50)
+    # subject_semester = models.CharField(max_length=50)
+    semester_year = models.ForeignKey(SemesterOrYear, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.subject_semester} Semester - {self.student} - {self.subject_name}'
+        return f'{self.semester_year.semester_year} - {self.student.roll_number} ({self.student}) - {self.subject_name}'
 
 
 class SemesterConclusion(models.Model):
@@ -63,7 +71,9 @@ class SemesterConclusion(models.Model):
     total_gpa = models.FloatField()
     cgpa = models.FloatField()
     status = models.CharField(max_length=50)
-    semester = models.OneToOneField(Semester, on_delete=models.CASCADE)
+
+    result = models.ForeignKey(Student, on_delete=models.CASCADE)
+    semester = models.OneToOneField(SemesterOrYear, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.semester.subject_semester} Semester - {self.semester.student} - Result'
+        return f'{self.semester.semester_year} - {self.result.student_name} - Result'

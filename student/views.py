@@ -1,5 +1,5 @@
 from rest_framework import generics
-from .models import Semester, Student, SemesterConclusion
+from .models import Subject, Student, SemesterConclusion
 from .serializers import StudentSerializer, SemesterSerializer, SemesterConclusionSerializer
 
 
@@ -14,12 +14,12 @@ class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class SemesterList(generics.ListCreateAPIView):
-    queryset = Semester.objects.all()
+    queryset = Subject.objects.all()
     serializer_class = SemesterSerializer
 
 
 class SemesterDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Semester.objects.all()
+    queryset = Subject.objects.all()
     serializer_class = SemesterSerializer
 
 
