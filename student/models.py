@@ -2,8 +2,14 @@ from django.db import models
 
 
 class StudentTestModel(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    # id = models.BigAutoField(primary_key=True)
+    registration_num = models.CharField(max_length=100)
     student_name = models.CharField(max_length=100)
+    total_num = models.FloatField()
+    grade = models.CharField(max_length=3)
+
+    def __str__(self):
+        return f'{self.registration_num} - {self.student_name}'
 
 
 class Student(models.Model):
