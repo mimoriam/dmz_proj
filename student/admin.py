@@ -15,10 +15,10 @@ class StudentResource(resources.ModelResource):
     class Meta:
         model = StudentTestModel
         import_id_fields = ('registration_num',)
-        skip_unchanged = True
+        skip_unchanged = False
         report_skipped = True
-        fields = ('registration_num', 'student_name', 'total_num', 'grade',)
-        export_order = ('registration_num', 'student_name', 'total_num', 'grade')
+        fields = ('registration_num', 'student_name', 'total_num', 'grade', 'year',)
+        export_order = ('registration_num', 'student_name', 'total_num', 'grade', 'year')
 
     def get_queryset(self):
         return self._meta.model.objects.order_by('registration_num')

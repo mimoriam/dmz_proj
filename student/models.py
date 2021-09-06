@@ -6,7 +6,8 @@ class StudentTestModel(models.Model):
     registration_num = models.CharField(max_length=100)
     student_name = models.CharField(max_length=100)
     total_num = models.FloatField()
-    grade = models.CharField(max_length=3)
+    grade = models.CharField(max_length=2)
+    year = models.IntegerField()
     
     class Meta:
         ordering = ['registration_num']
