@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Rest related:
     'rest_framework',
+    'django_filters',
 
     # Django import-export:
     'import_export',  # python manage.py collectstatic
@@ -48,7 +49,10 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 15,
 }
 
 MIDDLEWARE = [
