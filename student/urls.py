@@ -3,10 +3,11 @@ from django.urls import path
 
 # from student.views import StudentDetail, StudentList, SemesterDetail, SemesterList, SemesterConclusionList, \
 #     SemesterConclusionDetail
-from student.views import StudentTestList, StudentTestDetail
+from student.views import StudentList, StudentDetail
 
 urlpatterns = [
-    path('', StudentTestList.as_view()),
+    path('', StudentList.as_view()),
+    path('<int:pk>/', StudentDetail.as_view()),
     # path('<int:pk>/', StudentDetail.as_view()),
     # path('', StudentList.as_view()),
     # path('semester/<int:pk>/', SemesterDetail.as_view()),

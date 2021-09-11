@@ -1,20 +1,24 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
-from .models import Subject, Student, SemesterConclusion, StudentTestModel
-from .serializers import StudentSerializer, SemesterSerializer, SemesterConclusionSerializer, StudentTestModelSerializer
+from rest_framework import viewsets
+# from .models import Subject, Student, SemesterConclusion, StudentModel from .serializers import StudentSerializer,
+# SemesterSerializer, SemesterConclusionSerializer, StudentModelSerializer
+from .models import StudentModel
+from .serializers import StudentModelSerializer
 from rest_framework import filters
 
 
-class StudentTestList(generics.ListCreateAPIView):
-    queryset = StudentTestModel.objects.all()
-    serializer_class = StudentTestModelSerializer
+class StudentList(generics.ListAPIView):
+    queryset = StudentModel.objects.all()
+    serializer_class = StudentModelSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['registration_num']
+    search_fields = ['=registration_num', 'student_name', 'grade', 'subject__subject', 'subject__year__year', ]
+    # lookup_field = 'registration_num'
 
 
-class StudentTestDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = StudentTestModel.objects.all()
-    serializer_class = StudentTestModelSerializer
+class StudentDetail(generics.RetrieveAPIView):
+    queryset = StudentModel.objects.all()
+    serializer_class = StudentModelSerializer
 
 # class StudentList(generics.ListCreateAPIView):
 #     queryset = Student.objects.all()
