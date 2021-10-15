@@ -12,7 +12,8 @@ class StudentList(generics.ListAPIView):
     queryset = StudentModel.objects.all()
     serializer_class = StudentModelSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['=registration_num', 'student_name', 'grade', 'subject__subject', 'subject__year__year', ]
+    # search_fields = ['=registration_num', 'student_name', 'grade', 'subject__subject', 'subject__year__year', ]
+    search_fields = ['=registration_num', ]
     # lookup_field = 'registration_num'
 
 
